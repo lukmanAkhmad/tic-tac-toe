@@ -22,10 +22,15 @@ const Gameboard = (() => {
         render();
     }
 
+    const renderMessage = (message) => {
+        document.querySelector('#message').textContent = message;
+    }
+
     return {
         render,
         getGameboard,
         update,
+        renderMessage,
     }
 
 })();
@@ -80,7 +85,10 @@ const gamePlay = (() => {
 
         Gameboard.update(index, players[currentPlayerIndex].mark);
 
-        
+        if(checkForWin(Gameboard.getGameboard())){
+            gameOver = true;
+            Gameboard.renderMessage(`${players[currentPlayerIndex].name} Wins!`)
+        }
         
     }
 
