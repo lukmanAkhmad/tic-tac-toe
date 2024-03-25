@@ -57,7 +57,11 @@ function checkForWin(board){
         if(board[a] && boar[a] === board[b] && board[a] === board[c]) return true;
     }
     return false;
-}
+};
+
+function checkForTie(board){
+    return board.every((cell) => cell !== '')
+};
 
 const gamePlay = (() => {
     let player1 = document.querySelector('#player1');
@@ -88,7 +92,7 @@ const gamePlay = (() => {
         if(checkForWin(Gameboard.getGameboard())){
             gameOver = true;
             Gameboard.renderMessage(`${players[currentPlayerIndex].name} Wins!`)
-        }
+        } else if ()
         
     }
 
