@@ -15,6 +15,19 @@ const Gameboard = (() => {
         })
     }
 
+    const getGameboard = () => gameboard;
+
+    const update = (index, value) => {
+        gameboard[index] = value;
+        render();
+    }
+
+    return {
+        render,
+        getGameboard,
+        update,
+    }
+
 })();
 
 const createPlayer = (name, mark) => {
@@ -22,6 +35,23 @@ const createPlayer = (name, mark) => {
         name,
         mark
     }
+}
+
+function checkForWin(board){
+    const winCombinations = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ]
+    for(let i = 0;i < winCombinations.length;i++){
+        const [a,b,c] = winCombinations[i];
+        if(board[a] && boar[a] === board[b] && board[a] === board[c]) return true;
+    }
+    return false;
 }
 
 const gamePlay = (() => {
@@ -41,5 +71,21 @@ const gamePlay = (() => {
         Gameboard.render();
     }
 
+    const handleClick = (event) => {
+        if(gameOver) return;
+
+        let index = parseInt(event.target.id.split('-')[1]);
+
+        if(Gameboard.getGameboard()[index] !== '') return;
+
+        Gameboard.update(index, players[currentPlayerIndex].mark);
+
+        
+        
+    }
+
+    return {
+        start,
+    }
 
 })();
