@@ -51,9 +51,7 @@ function checkForWin(board) {
     ]
     for (let i = 0; i < winCombinations.length; i++) {
         const [a, b, c] = winCombinations[i];
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return true;
-        }
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) return true;
     }
     return false;
 }
