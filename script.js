@@ -1,3 +1,14 @@
+const startButton = document.querySelector('#startButton');
+const restartButton = document.querySelector('#restartButton');
+
+startButton.addEventListener('click', () => {
+    gamePlay.start()
+})
+
+restartButton.addEventListener('click', () => {
+    gamePlay.restart()
+})
+
 const displayControler = (() => {
     const renderMessage = (message) => {
         document.querySelector('#message').textContent = message;
@@ -124,14 +135,3 @@ const gamePlay = (() => {
         restart,
     }
 })();
-
-const startButton = document.querySelector('#startButton');
-const restartButton = document.querySelector('#restartButton');
-
-startButton.addEventListener('click', () => {
-    gamePlay.start()
-})
-
-restartButton.addEventListener('click', () => {
-    gamePlay.restart()
-})
