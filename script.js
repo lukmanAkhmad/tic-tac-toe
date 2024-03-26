@@ -9,15 +9,6 @@ restartButton.addEventListener('click', () => {
     gamePlay.restart()
 })
 
-const displayControler = (() => {
-    const renderMessage = (message) => {
-        document.querySelector('#message').textContent = message;
-    }
-    return {
-        renderMessage,
-    }
-})();
-
 const Gameboard = (() => {
     let gameboard = ['', '', '', '', '', '', '', '', ''];
 
@@ -133,5 +124,14 @@ const gamePlay = (() => {
         start,
         handleClick,
         restart,
+    }
+})();
+
+const displayControler = (() => {
+    const renderMessage = (message) => {
+        document.querySelector('#message').textContent = message;
+    }
+    return {
+        renderMessage,
     }
 })();
