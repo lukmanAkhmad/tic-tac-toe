@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <div id="title">
         <h1>Tic Tac Toe</h1>
@@ -14,13 +16,17 @@
     <div id="board">
         
     </div>
-    <div id="controler">
-        <input type="text" id="player1" placeholder="Player 1 Name">
-        <input type="text" id="player2" placeholder="Player 2 Name">
-        <button id="startButton">START</button>
-        <button id="restartButton">RESTART</button>
+    <div id="container-controler">
+        <h2 id="message"></h2>
+        <div id="container-input">
+            <input type="text" id="player1" placeholder="Player 1 Name">
+            <input type="text" id="player2" placeholder="Player 2 Name">
+        </div>
+        <div id="container-button">
+            <button id="startButton">START</button>
+            <button id="restartButton">RESTART</button>
+        </div>
     </div>
-    <div id="message"></div>
-    <div id="resultDisplay"></div>
 </body>
+
 </html>
