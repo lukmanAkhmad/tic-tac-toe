@@ -103,6 +103,16 @@ const gamePlay = (() => {
             displayControler.renderMessage("It's a tie")
         }
         currentPlayerIndex = (currentPlayerIndex === 0) ? 1 : 0;
+
+
+        // if(currentPlayerIndex == 0){
+        //     document.querySelector('#message').textContent = "jalan X"
+        // } else if(currentPlayerIndex == 1){
+        //     document.querySelector('#message').textContent = "jalan O"
+        // }
+
+        // let cobaPesan = document.querySelector('#resultDisplay');
+        // cobaPesan.textContent = players[currentPlayerIndex].mark;
     }
 
     const restart = () => {
@@ -112,6 +122,7 @@ const gamePlay = (() => {
         Gameboard.render();
         gameOver = false;
         document.querySelector('#message').textContent = '';
+        // document.querySelector('#resultDisplay').textContent = '';
     }
 
     return {
