@@ -16,8 +16,21 @@ function Gameboard() {
         console.log(boardWithCellValues);
     }
 
-    return { printBoard };
-}
+    const dropToken = (column, player) => {
+        const availableCells = board.filter((row) => row[column].getValue() === 0).map((row) => row[column]);
+
+        if (!availableCells.length) return;
+
+        const rows = availableCells.length;
+
+        board[rows][column].addToken(player);
+    }
+
+    return {
+        printBoard,
+        dropToken
+    };
+};
 Gameboard();
 
 function Cell() {
