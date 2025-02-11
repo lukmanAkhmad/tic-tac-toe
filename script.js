@@ -16,13 +16,20 @@ function Gameboard() {
         console.log(boardWithCellValues);
     }
 
+    let playerMove = true;
+    const getPlayerMove = () => playerMove;
+
     const dropToken = (column, row, player) => {
         const rows = row;
         const availableCells = board[rows][column].getValue() !== 0;
 
         if (availableCells) {
+            playerMove = false;
+            console.log(playerMove);
             return;
         } else {
+            playerMove = true;
+            console.log(playerMove);
             board[rows][column].addToken(player);
         };
 
@@ -31,7 +38,8 @@ function Gameboard() {
 
     return {
         printBoard,
-        dropToken
+        dropToken,
+        getPlayerMove
     };
 };
 
@@ -87,8 +95,13 @@ function GameController(
 
         board.dropToken(column, row, getActivePlayer().token);
 
-        switchPlayerTurn();
-        printNewRound();
+        if (board.getPlayerMove() === false) {
+            printNewRound();
+            return;
+        } else {
+            switchPlayerTurn();
+            printNewRound();
+        };
     };
 
     printNewRound();
@@ -96,7 +109,10 @@ function GameController(
     return {
         playRound,
         getActivePlayer,
+        board
     };
 };
 
 const game = GameController();
+
+// Jika cell sudah diisi maka tidak bisa diisi kembali dan player yang jalan tetap memilih cell, bukan player selanjutnya yang jalan!
