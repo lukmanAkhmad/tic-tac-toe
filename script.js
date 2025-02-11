@@ -16,12 +16,12 @@ function Gameboard() {
         console.log(boardWithCellValues);
     }
 
-    const dropToken = (column, player) => {
-        const availableCells = board.filter((row) => row[column].getValue() === 0).map((row) => row[column]);
+    const dropToken = (column,row, player) => {
+        // const availableCells = board.filter((row) => row[column].getValue() === 0).map((row) => row[column]);
 
-        if (!availableCells.length) return;
+        // if (!availableCells.length) return;
 
-        const rows = availableCells.length;
+        const rows = row;
 
         board[rows][column].addToken(player);
     }
@@ -48,9 +48,53 @@ function Cell() {
     };
 };
 
-function GameController() {
+function GameController(
+    playerOneName = "Player One",
+    playerTwoName = "Player Two"
+) {
     const board = Gameboard();
-    return { board };
+
+    const players = [
+        {
+            name: playerOneName,
+            token: 1
+        },
+        {
+            name: playerTwoName,
+            token: 2
+        }
+    ];
+
+    let activePlayer = players[0];
+
+    const switchPlayerTurn = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    };
+
+    const getActivePlayer = () => activePlayer;
+
+    const printNewRound = () => {
+        board.printBoard();
+        console.log(`${getActivePlayer().name}'s turn.`);
+    };
+
+    const playRound = (column,row) => {
+        console.log(
+            `Dropping ${getActivePlayer().name}'s token into column ${column} and row ${row}...`
+        );
+
+        board.dropToken(column,row, getActivePlayer().token);
+
+        switchPlayerTurn();
+        printNewRound();
+    };
+
+    printNewRound();
+
+    return {
+        playRound,
+        getActivePlayer,
+    };
 };
 
 const game = GameController();
