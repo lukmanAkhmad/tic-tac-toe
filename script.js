@@ -9,7 +9,7 @@ function Gameboard() {
             board[i].push(Cell());
         }
     }
-    console.log(board)
+    console.log(board);
 
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
@@ -18,6 +18,88 @@ function Gameboard() {
 
     let playerMove = true;
     const getPlayerMove = () => playerMove;
+
+    const checkWinner = () => {
+        // [] sebelah kiri = row
+        // [] sebelah kanan = column
+
+        // Player One
+        // horizontal
+        if (
+            ((board[0][0].getValue() == 1) && (board[0][1].getValue() == 1) && (board[0][2].getValue() == 1)) ||
+            ((board[1][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[1][2].getValue() == 1)) ||
+            ((board[2][0].getValue() == 1) && (board[2][1].getValue() == 1) && (board[2][2].getValue() == 1))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+        };
+
+        // vertikal
+        if (
+            ((board[0][0].getValue() == 1) && (board[1][0].getValue() == 1) && (board[2][0].getValue() == 1)) ||
+            ((board[0][1].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][1].getValue() == 1)) ||
+            ((board[0][2].getValue() == 1) && (board[1][2].getValue() == 1) && (board[2][2].getValue() == 1))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+        };
+
+        // diagonal
+        if (
+            ((board[0][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][2].getValue() == 1))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+        };
+
+        // anti-diagonal
+        if (
+            ((board[0][2].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][0].getValue() == 1))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+        };
+
+        // Player Two
+        // horizontal
+        if (
+            ((board[0][0].getValue() == 2) && (board[0][1].getValue() == 2) && (board[0][2].getValue() == 2)) ||
+            ((board[1][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[1][2].getValue() == 2)) ||
+            ((board[2][0].getValue() == 2) && (board[2][1].getValue() == 2) && (board[2][2].getValue() == 2))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+        };
+
+        // vertikal
+        if (
+            ((board[0][0].getValue() == 2) && (board[1][0].getValue() == 2) && (board[2][0].getValue() == 2)) ||
+            ((board[0][1].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][1].getValue() == 2)) ||
+            ((board[0][2].getValue() == 2) && (board[1][2].getValue() == 2) && (board[2][2].getValue() == 2))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+        };
+
+        // diagonal
+        if (
+            ((board[0][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][2].getValue() == 2))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+        };
+
+        // anti-diagonal
+        if (
+            ((board[0][2].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][0].getValue() == 2))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+        };
+
+        // Check Tie!
+
+    }
 
     const dropToken = (column, row, player) => {
         const rows = row;
@@ -39,7 +121,8 @@ function Gameboard() {
     return {
         printBoard,
         dropToken,
-        getPlayerMove
+        getPlayerMove,
+        checkWinner
     };
 };
 
@@ -95,6 +178,9 @@ function GameController(
 
         board.dropToken(column, row, getActivePlayer().token);
 
+        // check Winner
+        board.checkWinner();
+
         if (board.getPlayerMove() === false) {
             printNewRound();
             return;
@@ -115,4 +201,6 @@ function GameController(
 
 const game = GameController();
 
-// Jika cell sudah diisi maka tidak bisa diisi kembali dan player yang jalan tetap memilih cell, bukan player selanjutnya yang jalan!
+// get player Winner
+// 1.Ambil nilai board
+// 2.Jika nilai board terpenuhi maka permainan selesai dan player winner dimunculkan
