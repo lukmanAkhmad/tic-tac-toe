@@ -16,22 +16,24 @@ function Gameboard() {
         console.log(boardWithCellValues);
     }
 
-    const dropToken = (column,row, player) => {
-        // const availableCells = board.filter((row) => row[column].getValue() === 0).map((row) => row[column]);
-
-        // if (!availableCells.length) return;
-
+    const dropToken = (column, row, player) => {
         const rows = row;
+        const availableCells = board[rows][column].getValue() !== 0;
 
-        board[rows][column].addToken(player);
-    }
+        if (availableCells) {
+            return;
+        } else {
+            board[rows][column].addToken(player);
+        };
+
+        console.log(board[rows][column].getValue());
+    };
 
     return {
         printBoard,
         dropToken
     };
 };
-Gameboard();
 
 function Cell() {
     let value = 0;
@@ -78,12 +80,12 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
-    const playRound = (column,row) => {
+    const playRound = (column, row) => {
         console.log(
             `Dropping ${getActivePlayer().name}'s token into column ${column} and row ${row}...`
         );
 
-        board.dropToken(column,row, getActivePlayer().token);
+        board.dropToken(column, row, getActivePlayer().token);
 
         switchPlayerTurn();
         printNewRound();
