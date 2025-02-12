@@ -84,7 +84,44 @@ function Gameboard() {
             console.log("Player Two Win!");
             playerMove = false;
         };
+
         // Check Tie!
+        if (
+            (
+                (
+                    ((board[0][0].getValue() == 1) || (board[0][0].getValue() == 2)) &&
+                    ((board[0][1].getValue() == 1) || (board[0][1].getValue() == 2)) &&
+                    ((board[0][2].getValue() == 1) || (board[0][2].getValue() == 2))
+                )
+            ) &&
+            (
+                (
+                    ((board[1][0].getValue() == 1) || (board[2][0].getValue() == 2)) &&
+                    ((board[1][1].getValue() == 1) || (board[1][1].getValue() == 2)) &&
+                    ((board[1][2].getValue() == 1) || (board[1][2].getValue() == 2))
+                )
+            ) &&
+            (
+                (
+                    ((board[2][0].getValue() == 1) || (board[2][0].getValue() == 2)) &&
+                    ((board[2][1].getValue() == 1) || (board[2][1].getValue() == 2)) &&
+                    ((board[2][2].getValue() == 1) || (board[2][2].getValue() == 2))
+                )
+            )
+        ) {
+            console.log("It's Tie!");
+            playerMove = false;
+        };
+
+        // game.playRound(0,0);
+        // game.playRound(0,2);
+        // game.playRound(0,1);
+        // game.playRound(1,0);
+        // game.playRound(2,0);
+        // game.playRound(1,1);
+        // game.playRound(1,2);
+        // game.playRound(2,2);
+        // game.playRound(2,1);
 
     };
 
@@ -187,7 +224,3 @@ function GameController(
 };
 
 const game = GameController();
-
-// get player Winner
-// 1.Ambil nilai board
-// 2.Jika nilai board terpenuhi maka permainan selesai dan player winner dimunculkan
