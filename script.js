@@ -24,36 +24,30 @@ function Gameboard() {
         // [] sebelah kanan = column
 
         // Player One
-        // horizontal
         if (
+            // horizontal
             ((board[0][0].getValue() == 1) && (board[0][1].getValue() == 1) && (board[0][2].getValue() == 1)) ||
             ((board[1][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[1][2].getValue() == 1)) ||
             ((board[2][0].getValue() == 1) && (board[2][1].getValue() == 1) && (board[2][2].getValue() == 1))
         ) {
             console.log("Player One Win!");
             playerMove = false;
-        };
-
-        // vertikal
-        if (
+        } else if (
+            // vertikal
             ((board[0][0].getValue() == 1) && (board[1][0].getValue() == 1) && (board[2][0].getValue() == 1)) ||
             ((board[0][1].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][1].getValue() == 1)) ||
             ((board[0][2].getValue() == 1) && (board[1][2].getValue() == 1) && (board[2][2].getValue() == 1))
         ) {
             console.log("Player One Win!");
             playerMove = false;
-        };
-
-        // diagonal
-        if (
+        } else if (
+            // diagonal
             ((board[0][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][2].getValue() == 1))
         ) {
             console.log("Player One Win!");
             playerMove = false;
-        };
-
-        // anti-diagonal
-        if (
+        } else if (
+            // anti-diagonal
             ((board[0][2].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][0].getValue() == 1))
         ) {
             console.log("Player One Win!");
@@ -61,45 +55,38 @@ function Gameboard() {
         };
 
         // Player Two
-        // horizontal
         if (
+            // horizontal
             ((board[0][0].getValue() == 2) && (board[0][1].getValue() == 2) && (board[0][2].getValue() == 2)) ||
             ((board[1][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[1][2].getValue() == 2)) ||
             ((board[2][0].getValue() == 2) && (board[2][1].getValue() == 2) && (board[2][2].getValue() == 2))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
-        };
-
-        // vertikal
-        if (
+        } else if (
+            // vertikal
             ((board[0][0].getValue() == 2) && (board[1][0].getValue() == 2) && (board[2][0].getValue() == 2)) ||
             ((board[0][1].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][1].getValue() == 2)) ||
             ((board[0][2].getValue() == 2) && (board[1][2].getValue() == 2) && (board[2][2].getValue() == 2))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
-        };
-
-        // diagonal
-        if (
+        } else if (
+            // diagonal
             ((board[0][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][2].getValue() == 2))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
-        };
-
-        // anti-diagonal
-        if (
+        } else if (
+            // anti-diagonal
             ((board[0][2].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][0].getValue() == 2))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
         };
-
         // Check Tie!
 
-    }
+    };
 
     const dropToken = (column, row, player) => {
         const rows = row;
