@@ -20,9 +20,6 @@ function Gameboard() {
     const getPlayerMove = () => playerMove;
 
     const checkWinner = () => {
-        // [] sebelah kiri = row
-        // [] sebelah kanan = column
-
         // Player One
         if (
             // horizontal
@@ -136,7 +133,7 @@ function Gameboard() {
 
     };
 
-    const dropToken = (column, row, player) => {
+    const dropToken = (row, column, player) => {
         const rows = row;
         const availableCells = board[rows][column].getValue() !== 0;
 
@@ -206,12 +203,12 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
-    const playRound = (column, row) => {
+    const playRound = (row, column) => {
         console.log(
-            `Dropping ${getActivePlayer().name}'s token into column ${column} and row ${row}...`
+            `Dropping ${getActivePlayer().name}'s token into row ${row} and column ${column}...`
         );
 
-        board.dropToken(column, row, getActivePlayer().token);
+        board.dropToken(row, column, getActivePlayer().token);
 
         // check Winner
         board.checkWinner();
@@ -235,6 +232,3 @@ function GameController(
 };
 
 const game = GameController();
-// refactor dari 1 menjadi X dan 2 menjadi O
-// playRound = (column, row) menjadi playRound = (row, column)
-// refactor dropToken = (column, row, player) menjadi dropToken = (row, column, player)
