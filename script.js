@@ -26,29 +26,29 @@ function Gameboard() {
         // Player One
         if (
             // horizontal
-            ((board[0][0].getValue() == 1) && (board[0][1].getValue() == 1) && (board[0][2].getValue() == 1)) ||
-            ((board[1][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[1][2].getValue() == 1)) ||
-            ((board[2][0].getValue() == 1) && (board[2][1].getValue() == 1) && (board[2][2].getValue() == 1))
+            ((board[0][0].getValue() == "X") && (board[0][1].getValue() == "X") && (board[0][2].getValue() == "X")) ||
+            ((board[1][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[1][2].getValue() == "X")) ||
+            ((board[2][0].getValue() == "X") && (board[2][1].getValue() == "X") && (board[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
             playerMove = false;
         } else if (
             // vertikal
-            ((board[0][0].getValue() == 1) && (board[1][0].getValue() == 1) && (board[2][0].getValue() == 1)) ||
-            ((board[0][1].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][1].getValue() == 1)) ||
-            ((board[0][2].getValue() == 1) && (board[1][2].getValue() == 1) && (board[2][2].getValue() == 1))
+            ((board[0][0].getValue() == "X") && (board[1][0].getValue() == "X") && (board[2][0].getValue() == "X")) ||
+            ((board[0][1].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][1].getValue() == "X")) ||
+            ((board[0][2].getValue() == "X") && (board[1][2].getValue() == "X") && (board[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
             playerMove = false;
         } else if (
             // diagonal
-            ((board[0][0].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][2].getValue() == 1))
+            ((board[0][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
             playerMove = false;
         } else if (
             // anti-diagonal
-            ((board[0][2].getValue() == 1) && (board[1][1].getValue() == 1) && (board[2][0].getValue() == 1))
+            ((board[0][2].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][0].getValue() == "X"))
         ) {
             console.log("Player One Win!");
             playerMove = false;
@@ -57,29 +57,29 @@ function Gameboard() {
         // Player Two
         if (
             // horizontal
-            ((board[0][0].getValue() == 2) && (board[0][1].getValue() == 2) && (board[0][2].getValue() == 2)) ||
-            ((board[1][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[1][2].getValue() == 2)) ||
-            ((board[2][0].getValue() == 2) && (board[2][1].getValue() == 2) && (board[2][2].getValue() == 2))
+            ((board[0][0].getValue() == "O") && (board[0][1].getValue() == "O") && (board[0][2].getValue() == "O")) ||
+            ((board[1][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[1][2].getValue() == "O")) ||
+            ((board[2][0].getValue() == "O") && (board[2][1].getValue() == "O") && (board[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
         } else if (
             // vertikal
-            ((board[0][0].getValue() == 2) && (board[1][0].getValue() == 2) && (board[2][0].getValue() == 2)) ||
-            ((board[0][1].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][1].getValue() == 2)) ||
-            ((board[0][2].getValue() == 2) && (board[1][2].getValue() == 2) && (board[2][2].getValue() == 2))
+            ((board[0][0].getValue() == "O") && (board[1][0].getValue() == "O") && (board[2][0].getValue() == "O")) ||
+            ((board[0][1].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][1].getValue() == "O")) ||
+            ((board[0][2].getValue() == "O") && (board[1][2].getValue() == "O") && (board[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
         } else if (
             // diagonal
-            ((board[0][0].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][2].getValue() == 2))
+            ((board[0][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
         } else if (
             // anti-diagonal
-            ((board[0][2].getValue() == 2) && (board[1][1].getValue() == 2) && (board[2][0].getValue() == 2))
+            ((board[0][2].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][0].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
             playerMove = false;
@@ -89,23 +89,23 @@ function Gameboard() {
         if (
             (
                 (
-                    ((board[0][0].getValue() == 1) || (board[0][0].getValue() == 2)) &&
-                    ((board[0][1].getValue() == 1) || (board[0][1].getValue() == 2)) &&
-                    ((board[0][2].getValue() == 1) || (board[0][2].getValue() == 2))
+                    ((board[0][0].getValue() == "X") || (board[0][0].getValue() == "O")) &&
+                    ((board[0][1].getValue() == "X") || (board[0][1].getValue() == "O")) &&
+                    ((board[0][2].getValue() == "X") || (board[0][2].getValue() == "O"))
                 )
             ) &&
             (
                 (
-                    ((board[1][0].getValue() == 1) || (board[2][0].getValue() == 2)) &&
-                    ((board[1][1].getValue() == 1) || (board[1][1].getValue() == 2)) &&
-                    ((board[1][2].getValue() == 1) || (board[1][2].getValue() == 2))
+                    ((board[1][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
+                    ((board[1][1].getValue() == "X") || (board[1][1].getValue() == "O")) &&
+                    ((board[1][2].getValue() == "X") || (board[1][2].getValue() == "O"))
                 )
             ) &&
             (
                 (
-                    ((board[2][0].getValue() == 1) || (board[2][0].getValue() == 2)) &&
-                    ((board[2][1].getValue() == 1) || (board[2][1].getValue() == 2)) &&
-                    ((board[2][2].getValue() == 1) || (board[2][2].getValue() == 2))
+                    ((board[2][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
+                    ((board[2][1].getValue() == "X") || (board[2][1].getValue() == "O")) &&
+                    ((board[2][2].getValue() == "X") || (board[2][2].getValue() == "O"))
                 )
             )
         ) {
@@ -122,6 +122,17 @@ function Gameboard() {
         // game.playRound(1,2);
         // game.playRound(2,2);
         // game.playRound(2,1);
+
+        // Yang baru
+        // game.playRound(0,0);
+        // game.playRound(2,0);
+        // game.playRound(1,0);
+        // game.playRound(0,1);
+        // game.playRound(0,2);
+        // game.playRound(1,1);
+        // game.playRound(2,1);
+        // game.playRound(2,2);
+        // game.playRound(1,2);
 
     };
 
@@ -174,11 +185,11 @@ function GameController(
     const players = [
         {
             name: playerOneName,
-            token: 1
+            token: "X"
         },
         {
             name: playerTwoName,
-            token: 2
+            token: "O"
         }
     ];
 
@@ -224,3 +235,6 @@ function GameController(
 };
 
 const game = GameController();
+// refactor dari 1 menjadi X dan 2 menjadi O
+// playRound = (column, row) menjadi playRound = (row, column)
+// refactor dropToken = (column, row, player) menjadi dropToken = (row, column, player)
