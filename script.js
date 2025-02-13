@@ -22,7 +22,128 @@ function Gameboard() {
     let gameOver = false;
     const getGameOver = () => gameOver;
 
-    
+    const checkWinner = () => {
+        // Player One
+        if (
+            // horizontal
+            ((board[0][0].getValue() == "X") && (board[0][1].getValue() == "X") && (board[0][2].getValue() == "X")) ||
+            ((board[1][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[1][2].getValue() == "X")) ||
+            ((board[2][0].getValue() == "X") && (board[2][1].getValue() == "X") && (board[2][2].getValue() == "X"))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // vertikal
+            ((board[0][0].getValue() == "X") && (board[1][0].getValue() == "X") && (board[2][0].getValue() == "X")) ||
+            ((board[0][1].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][1].getValue() == "X")) ||
+            ((board[0][2].getValue() == "X") && (board[1][2].getValue() == "X") && (board[2][2].getValue() == "X"))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // diagonal
+            ((board[0][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][2].getValue() == "X"))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // anti-diagonal
+            ((board[0][2].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][0].getValue() == "X"))
+        ) {
+            console.log("Player One Win!");
+            playerMove = false;
+            gameOver = true;
+        };
+
+        // Player Two
+        if (
+            // horizontal
+            ((board[0][0].getValue() == "O") && (board[0][1].getValue() == "O") && (board[0][2].getValue() == "O")) ||
+            ((board[1][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[1][2].getValue() == "O")) ||
+            ((board[2][0].getValue() == "O") && (board[2][1].getValue() == "O") && (board[2][2].getValue() == "O"))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // vertikal
+            ((board[0][0].getValue() == "O") && (board[1][0].getValue() == "O") && (board[2][0].getValue() == "O")) ||
+            ((board[0][1].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][1].getValue() == "O")) ||
+            ((board[0][2].getValue() == "O") && (board[1][2].getValue() == "O") && (board[2][2].getValue() == "O"))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // diagonal
+            ((board[0][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][2].getValue() == "O"))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+            gameOver = true;
+        } else if (
+            // anti-diagonal
+            ((board[0][2].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][0].getValue() == "O"))
+        ) {
+            console.log("Player Two Win!");
+            playerMove = false;
+            gameOver = true;
+        };
+
+        // Check Tie!
+        if (
+            (
+                (
+                    ((board[0][0].getValue() == "X") || (board[0][0].getValue() == "O")) &&
+                    ((board[0][1].getValue() == "X") || (board[0][1].getValue() == "O")) &&
+                    ((board[0][2].getValue() == "X") || (board[0][2].getValue() == "O"))
+                )
+            ) &&
+            (
+                (
+                    ((board[1][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
+                    ((board[1][1].getValue() == "X") || (board[1][1].getValue() == "O")) &&
+                    ((board[1][2].getValue() == "X") || (board[1][2].getValue() == "O"))
+                )
+            ) &&
+            (
+                (
+                    ((board[2][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
+                    ((board[2][1].getValue() == "X") || (board[2][1].getValue() == "O")) &&
+                    ((board[2][2].getValue() == "X") || (board[2][2].getValue() == "O"))
+                )
+            )
+        ) {
+            console.log("It's Tie!");
+            playerMove = false;
+            gameOver = true;
+        };
+
+        // game.playRound(0,0);
+        // game.playRound(0,2);
+        // game.playRound(0,1);
+        // game.playRound(1,0);
+        // game.playRound(2,0);
+        // game.playRound(1,1);
+        // game.playRound(1,2);
+        // game.playRound(2,2);
+        // game.playRound(2,1);
+
+        // Yang baru
+        // game.playRound(0,0);
+        // game.playRound(2,0);
+        // game.playRound(1,0);
+        // game.playRound(0,1);
+        // game.playRound(0,2);
+        // game.playRound(1,1);
+        // game.playRound(2,1);
+        // game.playRound(2,2);
+        // game.playRound(1,2);
+
+    };
 
     const getBoard = () => board;
 
@@ -48,6 +169,7 @@ function Gameboard() {
         getBoard,
         dropToken,
         getPlayerMove,
+        checkWinner,
         getGameOver
     };
 };
@@ -105,7 +227,7 @@ function GameController(
         board.dropToken(row, column, getActivePlayer().token);
 
         // check Winner
-        checkWinner();
+        board.checkWinner();
 
         if (board.getPlayerMove() === false) {
             printNewRound();
@@ -115,150 +237,6 @@ function GameController(
             printNewRound();
         };
     };
-
-    const checkWinner = () => {
-        // Player One
-        if (
-            // horizontal
-            ((board[0][0].getValue() == "X") && (board[0][1].getValue() == "X") && (board[0][2].getValue() == "X")) ||
-            ((board[1][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[1][2].getValue() == "X")) ||
-            ((board[2][0].getValue() == "X") && (board[2][1].getValue() == "X") && (board[2][2].getValue() == "X"))
-        ) {
-            console.log("Player One Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // vertikal
-            ((board[0][0].getValue() == "X") && (board[1][0].getValue() == "X") && (board[2][0].getValue() == "X")) ||
-            ((board[0][1].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][1].getValue() == "X")) ||
-            ((board[0][2].getValue() == "X") && (board[1][2].getValue() == "X") && (board[2][2].getValue() == "X"))
-        ) {
-            console.log("Player One Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // diagonal
-            ((board[0][0].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][2].getValue() == "X"))
-        ) {
-            console.log("Player One Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // anti-diagonal
-            ((board[0][2].getValue() == "X") && (board[1][1].getValue() == "X") && (board[2][0].getValue() == "X"))
-        ) {
-            console.log("Player One Win!");
-            playerMove = false;
-            getGameOver = true;
-        };
-
-        // Player Two
-        if (
-            // horizontal
-            ((board[0][0].getValue() == "O") && (board[0][1].getValue() == "O") && (board[0][2].getValue() == "O")) ||
-            ((board[1][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[1][2].getValue() == "O")) ||
-            ((board[2][0].getValue() == "O") && (board[2][1].getValue() == "O") && (board[2][2].getValue() == "O"))
-        ) {
-            console.log("Player Two Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // vertikal
-            ((board[0][0].getValue() == "O") && (board[1][0].getValue() == "O") && (board[2][0].getValue() == "O")) ||
-            ((board[0][1].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][1].getValue() == "O")) ||
-            ((board[0][2].getValue() == "O") && (board[1][2].getValue() == "O") && (board[2][2].getValue() == "O"))
-        ) {
-            console.log("Player Two Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // diagonal
-            ((board[0][0].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][2].getValue() == "O"))
-        ) {
-            console.log("Player Two Win!");
-            playerMove = false;
-            getGameOver = true;
-        } else if (
-            // anti-diagonal
-            ((board[0][2].getValue() == "O") && (board[1][1].getValue() == "O") && (board[2][0].getValue() == "O"))
-        ) {
-            console.log("Player Two Win!");
-            playerMove = false;
-            getGameOver = true;
-        };
-
-        // Check Tie!
-        if (
-            (
-                (
-                    ((board[0][0].getValue() == "X") || (board[0][0].getValue() == "O")) &&
-                    ((board[0][1].getValue() == "X") || (board[0][1].getValue() == "O")) &&
-                    ((board[0][2].getValue() == "X") || (board[0][2].getValue() == "O"))
-                )
-            ) &&
-            (
-                (
-                    ((board[1][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
-                    ((board[1][1].getValue() == "X") || (board[1][1].getValue() == "O")) &&
-                    ((board[1][2].getValue() == "X") || (board[1][2].getValue() == "O"))
-                )
-            ) &&
-            (
-                (
-                    ((board[2][0].getValue() == "X") || (board[2][0].getValue() == "O")) &&
-                    ((board[2][1].getValue() == "X") || (board[2][1].getValue() == "O")) &&
-                    ((board[2][2].getValue() == "X") || (board[2][2].getValue() == "O"))
-                )
-            )
-        ) {
-            console.log("It's Tie!");
-            playerMove = false;
-            getGameOver = true;
-        };
-
-        // game.playRound(0,0);
-        // game.playRound(0,2);
-        // game.playRound(0,1);
-        // game.playRound(1,0);
-        // game.playRound(2,0);
-        // game.playRound(1,1);
-        // game.playRound(1,2);
-        // game.playRound(2,2);
-        // game.playRound(2,1);
-
-        // Yang baru
-        // game.playRound(0,0);
-        // game.playRound(2,0);
-        // game.playRound(1,0);
-        // game.playRound(0,1);
-        // game.playRound(0,2);
-        // game.playRound(1,1);
-        // game.playRound(2,1);
-        // game.playRound(2,2);
-        // game.playRound(1,2);
-
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     printNewRound();
 
@@ -273,7 +251,7 @@ function GameController(
 
 function screenController() {
     const game = GameController();
-    const gameBoard = Gameboard();
+    // const gameBoard = Gameboard();
 
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
