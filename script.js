@@ -220,10 +220,10 @@ function GameController(
     };
 
     const playRound = (row, column) => {
+        if(board.getGameOver() === true) return;
         console.log(
             `Dropping ${getActivePlayer().name}'s token into row ${row} and column ${column}...`
         );
-
         board.dropToken(row, column, getActivePlayer().token);
 
         // check Winner
@@ -251,7 +251,6 @@ function GameController(
 
 function screenController() {
     const game = GameController();
-    // const gameBoard = Gameboard();
 
     const playerTurnDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
@@ -264,8 +263,8 @@ function screenController() {
 
         playerTurnDiv.textContent = `${activePlayer.name} turn...`;
 
-        board.forEach((row,rowIdx) => {
-            row.forEach((cell,columnIdx) => {
+        board.forEach((row, rowIdx) => {
+            row.forEach((cell, columnIdx) => {
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
 
@@ -274,7 +273,7 @@ function screenController() {
 
                 cellButton.textContent = cell.getValue();
                 boardDiv.appendChild(cellButton);
-                
+
             })
         })
     };
@@ -285,12 +284,12 @@ function screenController() {
 
         if ((!selectedColumn) && (!selectedRowsss)) return;
 
-        game.playRound(selectedRowsss,selectedColumn);
+        game.playRound(selectedRowsss, selectedColumn);
         updateScreen();
     };
+
     boardDiv.addEventListener("click", clickHandlerBoard);
     updateScreen();
-
 
 };
 screenController();
