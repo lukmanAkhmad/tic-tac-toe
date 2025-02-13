@@ -14,7 +14,7 @@ function Gameboard() {
     const printBoard = () => {
         const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
         console.log(boardWithCellValues);
-    }
+    };
 
     let playerMove = true;
     const getPlayerMove = () => playerMove;
@@ -133,6 +133,8 @@ function Gameboard() {
 
     };
 
+    const getBoard = () => board;
+    
     const dropToken = (row, column, player) => {
         const rows = row;
         const availableCells = board[rows][column].getValue() !== 0;
@@ -152,9 +154,10 @@ function Gameboard() {
 
     return {
         printBoard,
+        getBoard,
         dropToken,
         getPlayerMove,
-        checkWinner
+        checkWinner,
     };
 };
 
@@ -227,8 +230,49 @@ function GameController(
     return {
         playRound,
         getActivePlayer,
-        board
+        getBoard: board.getBoard
     };
 };
 
-const game = GameController();
+// const game = GameController();
+
+function screenController() {
+    const game = GameController();
+
+    const playerTurnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
+
+    const updateScreen = () => {
+        boardDiv.textContent = "";
+
+        const board = game.getBoard();
+        const activePlayer = game.getActivePlayer();
+
+        playerTurnDiv.textContent = `${activePlayer.name} turn...`;
+
+        board.forEach((row) => {
+            row.forEach((cell, index) => {
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+
+                cellButton.dataset.column = index;
+                cellButton.textContent = cell.getValue();
+                boardDiv.appendChild(cellButton);
+            })
+        })
+    };
+
+    function clickHandlerBoard(e) {
+        const selectedColumn = e.target.dataset.column;
+
+        if (!selectedColumn) return;
+
+        game.playRound(selectedColumn);
+        updateScreen();
+    };
+    boardDiv.addEventListener("click", clickHandlerBoard);
+    updateScreen();
+
+
+};
+screenController();
