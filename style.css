@@ -1,23 +1,27 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-#container{
+
+#container {
     display: grid;
     justify-items: center;
 }
-.board{
+
+.board {
     display: grid;
     height: 500px;
     width: 500px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-rows: repeat(3, 1fr);
     border: 1px solid black;
     gap: 2px;
     padding: 2px;
     background-color: yellow;
+    margin-top: 55px;
 }
-.cell{
+
+.cell {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,11 +31,23 @@
     background: lightyellow;
     cursor: pointer;
 }
-.messages{
+
+.messages {
     margin: 45px;
 }
-#container-controller{
+
+#container-controller {
     display: grid;
     justify-items: center;
     box-sizing: border-box;
+}
+
+#container-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#container-button {
+    display: flex;
+    flex-direction: column;
 }
