@@ -40,14 +40,67 @@
     display: grid;
     justify-items: center;
     box-sizing: border-box;
+    gap: 15px;
 }
 
 #container-input {
     display: flex;
     flex-direction: column;
+    gap: 13px;
 }
 
 #container-button {
     display: flex;
     flex-direction: column;
+    gap: 13px;
+}
+
+input[type="text"] {
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px solid #E5E7EB;
+    outline: 0;
+}
+
+input:focus {
+    border: 1px solid blue;
+    box-shadow: 2px 3px 7px 0px grey;
+}
+
+#buttonStart {
+    height: 30px;
+    width: 150px;
+    font-size: 19px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 0;
+    background-color: #3414e4;
+    color: white;
+    box-shadow: 2px 2px 2px #e4e4e4;
+}
+
+#buttonRestart {
+    height: 30px;
+    width: 150px;
+    font-size: 19px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 0;
+    background-color: #3414e4;
+    color: white;
+    box-shadow: 2px 2px 2px #e4e4e4;
+}
+
+#buttonStart:hover {
+    background-color: white;
+    color: #3414e4;
+    box-shadow: 2px 2px 2px #3414e4;
+}
+
+#buttonRestart:hover {
+    background-color: white;
+    color: #3414e4;
+    box-shadow: 2px 2px 2px #3414e4;
 }
