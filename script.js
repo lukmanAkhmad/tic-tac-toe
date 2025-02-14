@@ -20,7 +20,7 @@ function Gameboard() {
 
     const dropToken = (row, column, player) => {
         const rows = row;
-        const availableCells = board[rows][column].getValue() !== 0;
+        const availableCells = board[rows][column].getValue() !== "";
 
         if (availableCells) {
             playerMove = false;
@@ -43,7 +43,7 @@ function Gameboard() {
 };
 
 function Cell() {
-    let value = 0;
+    let value = "";
 
     const addToken = (player) => {
         value = player;
