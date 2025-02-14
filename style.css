@@ -1,3 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#container{
+    display: grid;
+    justify-items: center;
+}
 .board{
     display: grid;
     height: 500px;
@@ -18,4 +26,7 @@
     border: 1px solid grey;
     background: lightyellow;
     cursor: pointer;
+}
+.turn{
+    margin: 45px;
 }
