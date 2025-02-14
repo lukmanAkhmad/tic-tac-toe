@@ -225,7 +225,7 @@ function GameController(
 function screenController() {
     const game = GameController();
 
-    const playerTurnDiv = document.querySelector(".turn");
+    const playerTurnDiv = document.querySelector(".messages");
     const boardDiv = document.querySelector(".board");
 
     const updateScreen = () => {
