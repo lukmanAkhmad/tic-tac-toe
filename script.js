@@ -227,6 +227,8 @@ function screenController() {
 
     const playerTurnDiv = document.querySelector(".messages");
     const boardDiv = document.querySelector(".board");
+    const startButton = document.querySelector("#buttonStart");
+    const restartButton = document.querySelector("#buttonRestart");
 
     const updateScreen = () => {
         boardDiv.textContent = "";
@@ -261,7 +263,11 @@ function screenController() {
         updateScreen();
     };
 
-    boardDiv.addEventListener("click", clickHandlerBoard);
+    startButton.addEventListener("click", () => {
+        console.log("button start on click");
+        boardDiv.addEventListener("click", clickHandlerBoard);
+    });
+
     updateScreen();
 
 };
