@@ -329,5 +329,3 @@ function ScreenController() {
 
 };
 // ScreenController();
-
-// Pesan kemenangan di UI message
