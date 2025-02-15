@@ -1,8 +1,16 @@
 const buttonStart = document.querySelector("#buttonStart");
 buttonStart.addEventListener("click", () => {
     console.log("Button start on click");
-    screenController();
-})
+    ScreenController();
+});
+
+const restartButton = document.querySelector("#buttonRestart");
+restartButton.addEventListener("click", () => {
+    console.log("Button restart on click");
+    const screenControl = ScreenController();
+    screenControl.restart();
+    screenControl.updateScreen();
+});
 
 function Gameboard() {
     const rows = 3;
@@ -228,7 +236,7 @@ function GameController(
     };
 };
 
-function screenController() {
+function ScreenController() {
     const playerTurnDiv = document.querySelector(".messages");
     const boardDiv = document.querySelector(".board");
 
@@ -275,7 +283,14 @@ function screenController() {
     boardDiv.addEventListener("click", clickHandlerBoard);
     updateScreen();
 
-};
-// screenController();
+    const restart = () => {
+        game.getBoard();
+    }
 
-// 
+    return {
+        updateScreen,
+        restart
+    }
+
+};
+// ScreenController();
