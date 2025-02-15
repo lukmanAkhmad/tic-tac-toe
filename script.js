@@ -107,6 +107,15 @@ function GameController(
     let gameOver = false;
     const getGameOver = () => gameOver;
 
+    let statusPlayerOne = false;
+    const getStatusPlayerOne = () => statusPlayerOne;
+
+    let statusPlayerTwo = false;
+    const getStatusPlayerTwo = () => statusPlayerTwo;
+
+    let statusTie = false;
+    const getStatusTie = () => statusTie;
+
     const checkWinner = () => {
         // Player One
         if (
@@ -116,6 +125,7 @@ function GameController(
             ((board.getBoard()[2][0].getValue() == "X") && (board.getBoard()[2][1].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
+            statusPlayerOne = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -125,6 +135,7 @@ function GameController(
             ((board.getBoard()[0][2].getValue() == "X") && (board.getBoard()[1][2].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
+            statusPlayerOne = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -132,6 +143,7 @@ function GameController(
             ((board.getBoard()[0][0].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
             console.log("Player One Win!");
+            statusPlayerOne = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -139,6 +151,7 @@ function GameController(
             ((board.getBoard()[0][2].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[2][0].getValue() == "X"))
         ) {
             console.log("Player One Win!");
+            statusPlayerOne = true;
             playerMove = false;
             gameOver = true;
         };
@@ -151,6 +164,7 @@ function GameController(
             ((board.getBoard()[2][0].getValue() == "O") && (board.getBoard()[2][1].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
+            statusPlayerTwo = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -160,6 +174,7 @@ function GameController(
             ((board.getBoard()[0][2].getValue() == "O") && (board.getBoard()[1][2].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
+            statusPlayerTwo = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -167,6 +182,7 @@ function GameController(
             ((board.getBoard()[0][0].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
+            statusPlayerTwo = true;
             playerMove = false;
             gameOver = true;
         } else if (
@@ -174,6 +190,7 @@ function GameController(
             ((board.getBoard()[0][2].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[2][0].getValue() == "O"))
         ) {
             console.log("Player Two Win!");
+            statusPlayerTwo = true;
             playerMove = false;
             gameOver = true;
         };
@@ -203,6 +220,7 @@ function GameController(
             )
         ) {
             console.log("It's Tie!");
+            statusTie = true;
             playerMove = false;
             gameOver = true;
         };
@@ -232,12 +250,15 @@ function GameController(
     return {
         playRound,
         getActivePlayer,
-        getBoard: board.getBoard
+        getBoard: board.getBoard,
+        getStatusPlayerOne,
+        getStatusPlayerTwo,
+        getStatusTie
     };
 };
 
 function ScreenController() {
-    const playerTurnDiv = document.querySelector(".messages");
+    const messages = document.querySelector(".messages");
     const boardDiv = document.querySelector(".board");
 
     const playerOneInput = document.querySelector("#player-1");
@@ -252,8 +273,22 @@ function ScreenController() {
 
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
+        const statusPlayerOne = game.getStatusPlayerOne();
+        const statusPlayerTwo = game.getStatusPlayerTwo();
+        const statusTie = game.getStatusTie();
 
-        playerTurnDiv.textContent = `${activePlayer.name} turn...`;
+        messages.textContent = `${activePlayer.name} turn...`;
+
+        if(statusPlayerOne){
+            messages.textContent = "";
+            messages.textContent = `${activePlayer.name} Win!`;
+        } else if(statusPlayerTwo){
+            messages.textContent = "";
+            messages.textContent = `${activePlayer.name} Win!`;
+        } else if(statusTie){
+            messages.textContent = "";
+            messages.textContent = `It's Tie!`;
+        }
 
         board.forEach((row, rowIdx) => {
             row.forEach((cell, columnIdx) => {
@@ -294,3 +329,5 @@ function ScreenController() {
 
 };
 // ScreenController();
+
+// Pesan kemenangan di UI message
