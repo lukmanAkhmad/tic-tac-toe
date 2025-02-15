@@ -1,3 +1,9 @@
+const buttonStart = document.querySelector("#buttonStart");
+buttonStart.addEventListener("click", () => {
+    console.log("Button start on click");
+    screenController();
+})
+
 function Gameboard() {
     const rows = 3;
     const columns = 3;
@@ -223,12 +229,15 @@ function GameController(
 };
 
 function screenController() {
-    const game = GameController();
-
     const playerTurnDiv = document.querySelector(".messages");
     const boardDiv = document.querySelector(".board");
-    const startButton = document.querySelector("#buttonStart");
-    const restartButton = document.querySelector("#buttonRestart");
+
+    const playerOneInput = document.querySelector("#player-1");
+    const playerTwoInput = document.querySelector("#player-2");
+    let namePlayerOne = playerOneInput.value;
+    let namePlayerTwo = playerTwoInput.value;
+
+    const game = GameController(namePlayerOne, namePlayerTwo);
 
     const updateScreen = () => {
         boardDiv.textContent = "";
@@ -243,8 +252,8 @@ function screenController() {
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
 
-                cellButton.dataset.rowsss = rowIdx
-                cellButton.dataset.column = columnIdx
+                cellButton.dataset.rowsss = rowIdx;
+                cellButton.dataset.column = columnIdx;
 
                 cellButton.textContent = cell.getValue();
                 boardDiv.appendChild(cellButton);
@@ -263,12 +272,10 @@ function screenController() {
         updateScreen();
     };
 
-    startButton.addEventListener("click", () => {
-        console.log("button start on click");
-        boardDiv.addEventListener("click", clickHandlerBoard);
-    });
-
+    boardDiv.addEventListener("click", clickHandlerBoard);
     updateScreen();
 
 };
-screenController();
+// screenController();
+
+// 
