@@ -37,20 +37,6 @@ function Gameboard() {
 
     const dropToken = (row, column, player) => {
         const rows = row;
-        // const availableCells = board[rows][column].getValue() !== "";
-        // const gameController = GameController();
-        // let playerMove = gameController.getPlayerMove();
-
-        // if (availableCells && playerMove) {
-        //     playerMove = false;
-        //     console.log(playerMove);
-        //     return;
-        // } else {
-        //     playerMove = true;
-        //     console.log(playerMove);
-        //     board[rows][column].addToken(player);
-        // };
-
         board[rows][column].addToken(player);
 
         console.log(board[rows][column].getValue());
