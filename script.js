@@ -32,19 +32,26 @@ function Gameboard() {
 
     const getBoard = () => board;
 
+    let playerMove = true;
+    const getPlayerMove = () => playerMove;
+
     const dropToken = (row, column, player) => {
         const rows = row;
-        const availableCells = board[rows][column].getValue() !== "";
+        // const availableCells = board[rows][column].getValue() !== "";
+        // const gameController = GameController();
+        // let playerMove = gameController.getPlayerMove();
 
-        if (availableCells) {
-            playerMove = false;
-            console.log(playerMove);
-            return;
-        } else {
-            playerMove = true;
-            console.log(playerMove);
-            board[rows][column].addToken(player);
-        };
+        // if (availableCells && playerMove) {
+        //     playerMove = false;
+        //     console.log(playerMove);
+        //     return;
+        // } else {
+        //     playerMove = true;
+        //     console.log(playerMove);
+        //     board[rows][column].addToken(player);
+        // };
+
+        board[rows][column].addToken(player);
 
         console.log(board[rows][column].getValue());
     };
@@ -53,6 +60,7 @@ function Gameboard() {
         printBoard,
         getBoard,
         dropToken,
+        getPlayerMove
     };
 };
 
@@ -101,8 +109,10 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
-    let playerMove = true;
-    const getPlayerMove = () => playerMove;
+    // let playerMove = true;
+    // const getPlayerMove = () => playerMove;
+
+    let playerMove = board.getPlayerMove();
 
     let gameOver = false;
     const getGameOver = () => gameOver;
@@ -223,7 +233,7 @@ function GameController(
         // check Winner
         checkWinner();
 
-        if (getPlayerMove() === false) {
+        if (playerMove === false) {
             printNewRound();
             return;
         } else {
@@ -240,7 +250,8 @@ function GameController(
         getBoard: board.getBoard,
         getStatusTie,
         getWinnerPlayer,
-        getGameOver
+        getGameOver,
+        // getPlayerMove
     };
 };
 
@@ -279,8 +290,21 @@ function ScreenController() {
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
 
-                cellButton.dataset.rowsss = rowIdx;
-                cellButton.dataset.column = columnIdx;
+                let getCellButtonDatasetRows = cellButton.dataset.rowsss;
+                getCellButtonDatasetRows = rowIdx;
+                let getCellButtonDatasetColumns = cellButton.dataset.column;
+                getCellButtonDatasetColumns = columnIdx;
+
+                cellButton.addEventListener("click", () => {
+                    console.log("cell button on click");
+                    const selectedColumn = getCellButtonDatasetColumns;
+                    const selectedRowsss = getCellButtonDatasetRows;
+
+                    if (cellButton.textContent !== "") return;
+                    cellButton.textContent = cell.getValue();
+                    game.playRound(selectedRowsss, selectedColumn);
+                    clickHandlerCell();
+                });
 
                 cellButton.textContent = cell.getValue();
                 boardDiv.appendChild(cellButton);
@@ -289,17 +313,10 @@ function ScreenController() {
         })
     };
 
-    function clickHandlerBoard(e) {
-        const selectedColumn = e.target.dataset.column;
-        const selectedRowsss = e.target.dataset.rowsss;
-
-        if ((!selectedColumn) && (!selectedRowsss)) return;
-
-        game.playRound(selectedRowsss, selectedColumn);
+    function clickHandlerCell() {
         updateScreen();
     };
 
-    boardDiv.addEventListener("click", clickHandlerBoard);
     updateScreen();
 
     const restart = () => {
