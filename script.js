@@ -43,7 +43,6 @@ function Gameboard() {
         printBoard,
         getBoard,
         dropToken,
-        getPlayerMove
     };
 };
 
@@ -92,10 +91,8 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
-    // let playerMove = true;
-    // const getPlayerMove = () => playerMove;
-
-    let playerMove = board.getPlayerMove();
+    let playerMove = true;
+    const getPlayerMove = () => playerMove;
 
     let gameOver = false;
     const getGameOver = () => gameOver;
@@ -207,7 +204,7 @@ function GameController(
     };
 
     const playRound = (row, column) => {
-        if (getGameOver() === true) return;
+        if (gameOver === true) return;
         console.log(
             `Dropping ${getActivePlayer().name}'s token into row ${row} and column ${column}...`
         );
@@ -234,7 +231,7 @@ function GameController(
         getStatusTie,
         getWinnerPlayer,
         getGameOver,
-        // getPlayerMove
+        getPlayerMove
     };
 };
 
