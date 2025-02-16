@@ -107,12 +107,6 @@ function GameController(
     let gameOver = false;
     const getGameOver = () => gameOver;
 
-    let statusPlayerOne = false;
-    const getStatusPlayerOne = () => statusPlayerOne;
-
-    let statusPlayerTwo = false;
-    const getStatusPlayerTwo = () => statusPlayerTwo;
-
     let statusTie = false;
     const getStatusTie = () => statusTie;
 
@@ -120,15 +114,12 @@ function GameController(
     const getWinnerPlayer = () => winnerPlayer;
 
     const checkWinner = () => {
-        // Player One
         if (
             // horizontal
             ((board.getBoard()[0][0].getValue() == "X") && (board.getBoard()[0][1].getValue() == "X") && (board.getBoard()[0][2].getValue() == "X")) ||
             ((board.getBoard()[1][0].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[1][2].getValue() == "X")) ||
             ((board.getBoard()[2][0].getValue() == "X") && (board.getBoard()[2][1].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
-            console.log("Player One Win!");
-            statusPlayerOne = true;
             winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
@@ -138,8 +129,6 @@ function GameController(
             ((board.getBoard()[0][1].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[2][1].getValue() == "X")) ||
             ((board.getBoard()[0][2].getValue() == "X") && (board.getBoard()[1][2].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
-            console.log("Player One Win!");
-            statusPlayerOne = true;
             winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
@@ -147,8 +136,6 @@ function GameController(
             // diagonal
             ((board.getBoard()[0][0].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[2][2].getValue() == "X"))
         ) {
-            console.log("Player One Win!");
-            statusPlayerOne = true;
             winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
@@ -156,22 +143,17 @@ function GameController(
             // anti-diagonal
             ((board.getBoard()[0][2].getValue() == "X") && (board.getBoard()[1][1].getValue() == "X") && (board.getBoard()[2][0].getValue() == "X"))
         ) {
-            console.log("Player One Win!");
-            statusPlayerOne = true;
             winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
         };
 
-        // Player Two
         if (
             // horizontal
             ((board.getBoard()[0][0].getValue() == "O") && (board.getBoard()[0][1].getValue() == "O") && (board.getBoard()[0][2].getValue() == "O")) ||
             ((board.getBoard()[1][0].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[1][2].getValue() == "O")) ||
             ((board.getBoard()[2][0].getValue() == "O") && (board.getBoard()[2][1].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
-            console.log("Player Two Win!");
-            statusPlayerTwo = true;
             winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
@@ -181,8 +163,6 @@ function GameController(
             ((board.getBoard()[0][1].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[2][1].getValue() == "O")) ||
             ((board.getBoard()[0][2].getValue() == "O") && (board.getBoard()[1][2].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
-            console.log("Player Two Win!");
-            statusPlayerTwo = true;
             winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
@@ -190,8 +170,6 @@ function GameController(
             // diagonal
             ((board.getBoard()[0][0].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[2][2].getValue() == "O"))
         ) {
-            console.log("Player Two Win!");
-            statusPlayerTwo = true;
             winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
@@ -199,8 +177,6 @@ function GameController(
             // anti-diagonal
             ((board.getBoard()[0][2].getValue() == "O") && (board.getBoard()[1][1].getValue() == "O") && (board.getBoard()[2][0].getValue() == "O"))
         ) {
-            console.log("Player Two Win!");
-            statusPlayerTwo = true;
             winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
@@ -262,8 +238,6 @@ function GameController(
         playRound,
         getActivePlayer,
         getBoard: board.getBoard,
-        getStatusPlayerOne,
-        getStatusPlayerTwo,
         getStatusTie,
         getWinnerPlayer,
         getGameOver
@@ -338,7 +312,3 @@ function ScreenController() {
     }
 
 };
-// ScreenController();
-
-// refactor check winner
-// refactor cara menampilkan pesan kemenangan, jangan gunakan activPlayer.name
