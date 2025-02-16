@@ -32,9 +32,6 @@ function Gameboard() {
 
     const getBoard = () => board;
 
-    let playerMove = true;
-    const getPlayerMove = () => playerMove;
-
     const dropToken = (row, column, player) => {
         const rows = row;
         board[rows][column].addToken(player);
