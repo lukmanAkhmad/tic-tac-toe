@@ -116,6 +116,9 @@ function GameController(
     let statusTie = false;
     const getStatusTie = () => statusTie;
 
+    let winnerPlayer = players.name;
+    const getWinnerPlayer = () => winnerPlayer;
+
     const checkWinner = () => {
         // Player One
         if (
@@ -126,6 +129,7 @@ function GameController(
         ) {
             console.log("Player One Win!");
             statusPlayerOne = true;
+            winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -136,6 +140,7 @@ function GameController(
         ) {
             console.log("Player One Win!");
             statusPlayerOne = true;
+            winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -144,6 +149,7 @@ function GameController(
         ) {
             console.log("Player One Win!");
             statusPlayerOne = true;
+            winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -152,6 +158,7 @@ function GameController(
         ) {
             console.log("Player One Win!");
             statusPlayerOne = true;
+            winnerPlayer = players[0];
             playerMove = false;
             gameOver = true;
         };
@@ -165,6 +172,7 @@ function GameController(
         ) {
             console.log("Player Two Win!");
             statusPlayerTwo = true;
+            winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -175,6 +183,7 @@ function GameController(
         ) {
             console.log("Player Two Win!");
             statusPlayerTwo = true;
+            winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -183,6 +192,7 @@ function GameController(
         ) {
             console.log("Player Two Win!");
             statusPlayerTwo = true;
+            winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
         } else if (
@@ -191,6 +201,7 @@ function GameController(
         ) {
             console.log("Player Two Win!");
             statusPlayerTwo = true;
+            winnerPlayer = players[1];
             playerMove = false;
             gameOver = true;
         };
@@ -253,7 +264,9 @@ function GameController(
         getBoard: board.getBoard,
         getStatusPlayerOne,
         getStatusPlayerTwo,
-        getStatusTie
+        getStatusTie,
+        getWinnerPlayer,
+        getGameOver
     };
 };
 
@@ -273,22 +286,19 @@ function ScreenController() {
 
         const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
-        const statusPlayerOne = game.getStatusPlayerOne();
-        const statusPlayerTwo = game.getStatusPlayerTwo();
         const statusTie = game.getStatusTie();
+        const winnerPlayer = game.getWinnerPlayer();
+        const gameOver = game.getGameOver();
 
         messages.textContent = `${activePlayer.name} turn...`;
 
-        if(statusPlayerOne){
+        if (gameOver && !statusTie) {
             messages.textContent = "";
-            messages.textContent = `${activePlayer.name} Win!`;
-        } else if(statusPlayerTwo){
-            messages.textContent = "";
-            messages.textContent = `${activePlayer.name} Win!`;
-        } else if(statusTie){
+            messages.textContent = `${winnerPlayer.name} Win!`;
+        } else if (statusTie) {
             messages.textContent = "";
             messages.textContent = `It's Tie!`;
-        }
+        };
 
         board.forEach((row, rowIdx) => {
             row.forEach((cell, columnIdx) => {
@@ -329,3 +339,6 @@ function ScreenController() {
 
 };
 // ScreenController();
+
+// refactor check winner
+// refactor cara menampilkan pesan kemenangan, jangan gunakan activPlayer.name
